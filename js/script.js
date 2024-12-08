@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // クリップボードコピー処理
     copyClipboardButton.addEventListener("click", () => {
         const clearTime = clearTimeElement.textContent;
-        const url = "https://yourgameurl.com";
+        const url = "https://baku005.github.io/kusogame/.com";
         const text = `クリアタイム: ${clearTime}秒! あなたも挑戦してみてね! ${url}`;
         navigator.clipboard.writeText(text)
             .then(() => {
