@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let startTime = null;
     let timerInterval = null;
 
+    const moveTimers = []; // ボックス移動用のタイマーIDを管理
+
     // 効果音の準備
     const clickSound = new Audio("sounds/click.mp3");
     const successSound = new Audio("sounds/success.mp3");
@@ -35,9 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 各boxを一定時間ごとにランダムな位置に移動
     boxes.forEach(box => {
-        setInterval(() => {
+        const timerId = setInterval(() => {
             moveBoxRandomly(box);
         }, 1000);
+        moveTimers.push(timerId); // タイマーIDを保存
     });
 
     // ストップウォッチの開始
@@ -54,6 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(timerInterval);
     }
 
+    // ボックスの移動を停止
+    function stopAllBoxMovement() {
+        moveTimers.forEach(timerId => clearInterval(timerId));
+    }
+
     // ポップアップの表示
     function showPopup(clearTime) {
         clearTimeElement.textContent = clearTime.toFixed(2);
@@ -66,36 +74,41 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!startTime) {
                 startStopwatch();
             }
-
+    
             const boxNumber = parseInt(box.textContent, 10);
-
+    
             clickSound.currentTime = 0;
             clickSound.play();
-
+    
             if (boxNumber === currentNumber) {
                 currentNumber++;
                 box.style.display = "none";
-
+    
                 if (currentNumber > maxNumber) {
                     stopStopwatch();
+                    stopAllBoxMovement(); // クリア時にボックスの動きを停止
                     const clearTime = (performance.now() - startTime) / 1000;
                     message.textContent = "CLEAR!";
                     message.style.color = "green";
+                    message.classList.add("visible"); // メッセージを表示
                     successSound.play();
                     showPopup(clearTime);
                 }
             } else {
                 message.textContent = "GAMEOVER!";
                 message.style.color = "red";
+                message.classList.add("visible"); // メッセージを表示
                 gameOverSound.play();
                 stopStopwatch();
-
+                stopAllBoxMovement(); // ゲームオーバー時にボックスの動きを停止
+    
                 boxes.forEach(box => {
                     box.style.pointerEvents = "none";
                 });
             }
         });
     });
+    
 
     // Twitterシェアボタンのクリック処理
     shareTwitterButton.addEventListener("click", () => {
