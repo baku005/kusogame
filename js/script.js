@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Twitterシェアボタンのクリック処理
     shareTwitterButton.addEventListener("click", () => {
         const clearTime = clearTimeElement.textContent;
-        const url = encodeURIComponent("https://yourgameurl.com");
+        const url = encodeURIComponent("https://baku005.github.io/kusogame/.com");
         const text = encodeURIComponent(`クリアタイム: ${clearTime}秒! あなたも挑戦してみてね!`);
         const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
         window.open(twitterUrl, "_blank");
