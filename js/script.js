@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const boxes = document.querySelectorAll(".box");
     const container = document.querySelector(".container");
