@@ -8,7 +8,35 @@
     margin: 0;
     background-color: #f4f4f4;
     overflow: hidden; /* 四角が画面外に出ないようにする */
+
+      /* 方眼紙風 */
+    background-image: linear-gradient(0deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px)),
+    linear-gradient(90deg, transparent calc(100% - 1px), #f0f0f0 calc(100% - 1px));
+    background-size: 23px 23px;
+    background-repeat: repeat;
+    background-position: center center;
 }
+
+.restart-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #62a7f0;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.restart-button:hover {
+    background-color: #003d82;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 
 .stopwatch {
     position: absolute;
@@ -38,7 +66,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 25px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.5s ease; /* アニメーション効果 */
@@ -53,6 +81,8 @@
     bottom: -15px;
     background: transparent; /* 透明なので見えません */
 }
+
+
 
 /* ホバー時のスタイル */
 .box:hover {

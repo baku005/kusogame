@@ -28,13 +28,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerWidth = container.clientWidth;
     const containerHeight = container.clientHeight;
 
-    // ランダムな位置に移動する関数
     function moveBoxRandomly(box) {
-        const randomX = Math.random() * (containerWidth - 50);
-        const randomY = Math.random() * (containerHeight - 50);
-
+        const boxWidth = box.offsetWidth; // ボックスの幅
+        const boxHeight = box.offsetHeight; // ボックスの高さ
+    
+        // 端からの余白分を計算
+        const maxX = containerWidth - boxWidth;
+        const maxY = containerHeight - boxHeight;
+    
+        // ランダムな位置を計算（範囲内に収める）
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+    
+        // ボックスを移動
         box.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
+    
 
     // 各boxを一定時間ごとにランダムな位置に移動
     boxes.forEach(box => {
